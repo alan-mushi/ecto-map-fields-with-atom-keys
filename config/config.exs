@@ -9,4 +9,4 @@ config :atoms_please, AtomsPlease.Repo,
 config :atoms_please,
   ecto_repos: [AtomsPlease.Repo]
 
-config :postgrex, :json_library, Poison
+config :postgrex, :json_library, AtomsPlease.Repo.JSON
