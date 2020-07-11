@@ -1,0 +1,37 @@
+$ mix test
+19:35:15.149 [info]  Before insertion:
+%AtomsPlease.Item{
+  __meta__: #Ecto.Schema.Metadata<:built, "items">,
+  extra: %{img: "https://xkcd.com/2240/", thingy_type: "other"},
+  id: nil,
+  name: "abcd"
+}
+
+19:35:15.154 [debug] QUERY OK db=2.1ms queue=0.6ms idle=58.0ms
+INSERT INTO "items" ("extra","name") VALUES ($1,$2) RETURNING "id" [%{img: "https://xkcd.com/2240/", thingy_type: "other"}, "abcd"]
+%AtomsPlease.Item{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "items">,
+  extra: %{"img" => "https://xkcd.com/2240/", "thingy_type" => "other"},
+  id: 1,
+  name: "abcd"
+}
+
+19:35:15.156 [debug] QUERY OK source="items" db=0.4ms queue=0.6ms idle=62.0ms
+SELECT i0."id", i0."name", i0."extra" FROM "items" AS i0 ORDER BY i0."id" LIMIT 1 []
+
+19:35:15.156 [info]  After fetch:
+
+
+  1) test insert and retrieve an item (AtomsPleaseTest)
+     test/atoms_please_test.exs:5
+     Assertion with == failed
+     code:  assert Map.get(fetched_item.extra, :thingy_type, nil) == "other"
+     left:  nil
+     right: "other"
+     stacktrace:
+       test/atoms_please_test.exs:26: (test)
+
+
+
+Finished in 0.04 seconds
+1 test, 1 failure
