@@ -9,6 +9,11 @@ $ mix test
 
 19:38:58.386 [debug] QUERY OK db=1.8ms queue=0.7ms idle=52.8ms
 INSERT INTO "items" ("extra","name") VALUES ($1,$2) RETURNING "id" [%{img: "https://xkcd.com/2240/", thingy_type: "other"}, "abcd"]
+
+19:38:58.388 [debug] QUERY OK source="items" db=0.4ms queue=0.6ms idle=56.5ms
+SELECT i0."id", i0."name", i0."extra" FROM "items" AS i0 ORDER BY i0."id" LIMIT 1 []
+
+19:38:58.388 [info]  After fetch:
 %AtomsPlease.Item{
   __meta__: #Ecto.Schema.Metadata<:loaded, "items">,
   extra: %{img: "https://xkcd.com/2240/", thingy_type: "other"},
@@ -16,10 +21,6 @@ INSERT INTO "items" ("extra","name") VALUES ($1,$2) RETURNING "id" [%{img: "http
   name: "abcd"
 }
 
-19:38:58.388 [debug] QUERY OK source="items" db=0.4ms queue=0.6ms idle=56.5ms
-SELECT i0."id", i0."name", i0."extra" FROM "items" AS i0 ORDER BY i0."id" LIMIT 1 []
-
-19:38:58.388 [info]  After fetch:
 .
 
 Finished in 0.03 seconds
